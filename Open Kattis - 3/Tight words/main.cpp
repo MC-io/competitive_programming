@@ -8,6 +8,48 @@ int main()
     int k, n;
     while (std::cin >> k >> n)
     {
+        int * A = new int[k + 1];
+        int * B = new int[k + 1];
+
+        for (int i = 0; i <= k; i++)
+        {
+            A[i] = 0; B[i] = 1;
+        }
+        for (int t = 0; t < n - 1; t++)
+        {
+            for (int i = 0; i <= k; i++)
+            {
+                for (int j = 0; j <= k; j++)
+                {
+                    if (std::fabs(i - j) <= 1)
+                        A[j]++;
+                }
+            }
+            for (int i = 0; i <= k; i++)
+            {
+                B[i] = B[i] * A[i];
+                A[i] = 0; 
+            }
+        }
+        long long hola = 0;
+        for (int i = 0; i <= k; i++)
+        {
+            std::cout << B[i] << ' ';
+            hola += B[i];
+        }
+        std::cout << std::fixed;
+        std::cout << std::setprecision(9);
+        std::cout << ((double) hola / (double)std::pow(k + 1,n)) * 100 << '\n';
+
+        
+
+    }
+
+
+    /*
+    int k, n;
+    while (std::cin >> k >> n)
+    {
         std::vector<int> nums;
         for (int i = 0; i <= k; i++)
         {
@@ -35,7 +77,7 @@ int main()
         std::cout << ((double) nums.size() / (double)std::pow(k + 1,n)) * 100 << '\n';
     }
 
-
+*/
 
 
 /*
