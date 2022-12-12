@@ -1,6 +1,8 @@
 #include <iostream>
 #include <list>
-
+int caches_size[50];
+int misses[50];
+std::list<int> caches[50];
 
 int add(std::list<int> & cache, int n, int val, int & misses)
 {
@@ -23,7 +25,7 @@ int add(std::list<int> & cache, int n, int val, int & misses)
     else if (!flag)
     {
         misses++;
-        cache.pop_back();
+        if (!cache.empty())cache.pop_back();
         cache.push_front(val);
     }
 }
@@ -32,16 +34,14 @@ int add(std::list<int> & cache, int n, int val, int & misses)
 int main()
 {
     int N;
-    while(std::cin >> N)
-    {
-        int caches_size[50];
-        int misses[50];
-        std::list<int> caches[50];
+    std::cin >> N;
+
 
         for (int i = 0; i < N; i++)
         {
             std::cin >> caches_size[i];
             misses[i] = 0;
+            caches[i].clear();
         }
 
         std::string op;
@@ -79,7 +79,7 @@ int main()
             }
             std::cin >> op;
         }
-    }
+
 
     return 0;
 }
